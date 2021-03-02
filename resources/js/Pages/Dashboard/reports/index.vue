@@ -3,13 +3,7 @@
 
         <div class="mt-8">
             <div class="flex justify-between">
-                <h2 class="text-3xl font-bold text-gray-700">Users</h2>
-                <div>
-                    <inertia-link href="/dashboard/users/create"
-                                  class="px-4 py-2 font-medium text-white bg-indigo-500 rounded hover:bg-indigo-600">
-                        Create User
-                    </inertia-link>
-                </div>
+                <h2 class="text-3xl font-bold text-gray-700">Reports</h2>
             </div>
             <div class="mt-4">
                 <div class="flex flex-col">
@@ -21,26 +15,35 @@
                                 <tr>
                                     <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-right text-gray-500 uppercase border-b border-gray-200 bg-gray-50"
                                         style="text-align: start">
-                                        Name
+                                        State
                                     </th>
                                     <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-gray-500 uppercase border-b border-gray-200 bg-gray-50"
                                         style="text-align: start">
-                                        Email
+                                        Region
                                     </th>
-                                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                                    <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-gray-500 uppercase border-b border-gray-200 bg-gray-50"
+                                        style="text-align: start">
+                                        Section
+                                    </th>
+                                    <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-gray-500 uppercase border-b border-gray-200 bg-gray-50"
+                                        style="text-align: start">
+                                        Body
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody class="text-gray-700 bg-white">
-                                <tr v-for="user in users" :key="user.index">
+                                <tr v-for="report in reports" :key="report.index">
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        {{ user.name }}
+                                        {{ report.state }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        {{ user.email }}
+                                        {{ report.region }}
                                     </td>
-
-                                    <td class="px-6 py-4 text-sm font-medium leading-5 whitespace-no-wrap border-b border-gray-200">
-                                        <inertia-link :href="`/dashboard/users/${user.id}/edit`" class="text-indigo-600 hover:text-indigo-900">Edit</inertia-link>
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                        {{ report.section }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                        {{ report.body.slice(0,20) }}
                                     </td>
                                 </tr>
                                 </tbody>
@@ -59,6 +62,11 @@
 
     export default {
         components: {Layout},
-        props: ['users']
+        props: ['reports'],
+        methods: {
+            Delete(report) {
+                this.$inertia.delete(`/dashboard/reports/${report.id}`);
+            },
+        },
     }
 </script>

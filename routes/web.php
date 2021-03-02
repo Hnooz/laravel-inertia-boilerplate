@@ -28,4 +28,18 @@ Route::middleware('auth')->prefix('/dashboard')->group(function () {
     Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
     Route::put('/users/{user}', 'UserController@update')->name('users.update');
     Route::delete('/users/{user}', 'UserController@destroy')->name('users.destroy');
+
+    Route::get('/products', 'ProductController@index')->name('products.index');
+    Route::get('/products/create', 'ProductController@create')->name('products.create');
+    Route::post('/products', 'ProductController@store')->name('products.store');
+    Route::get('/products/{product}/edit', 'ProductController@edit')->name('products.edit');
+    Route::put('/products/{product}', 'ProductController@update')->name('products.update');
+    Route::delete('/products/{product}', 'ProductController@destroy')->name('products.destroy');
+
+    Route::get('/reports', 'ReportController@index')->name('reports.index');
+    Route::get('/products/create', 'ProductController@create')->name('products.create');
+    Route::post('/products', 'ProductController@store')->name('products.store');
+    Route::get('/products/{product}/edit', 'ProductController@edit')->name('products.edit');
+    Route::put('/products/{product}', 'ProductController@update')->name('products.update');
+    Route::delete('/products/{product}', 'ProductController@destroy')->name('products.destroy');
 });
